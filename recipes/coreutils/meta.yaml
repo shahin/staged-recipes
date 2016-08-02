@@ -1,0 +1,37 @@
+{% set pkgname = "coreutils" %}
+{% set version = "8.21" %}
+{% set sha1 = "3fba93c72fab62f3742fe50957d3a86d4cd08176" %}
+{% set md5 = "065ba41828644eca5dd8163446de5d64" %}
+
+package:
+  name: {{ pkgname }}
+  version: {{ version }}
+
+source:
+    fn: {{ pkgname }}-{{ version }}.tar.xz
+    url: http://ftp.gnu.org/gnu/{{ pkgname }}/{{ pkgname }}-{{ version }}.tar.xz
+    sha1: {{ sha1 }}
+    md5: {{ md5 }}
+
+build:
+  number: 0
+  skip: True  # [win]
+
+requirements:
+  build:
+    - gcc  # [linux]
+    - llvm  # [osx]
+
+test:
+  commands:
+    - wc --version
+    - cat --version
+
+about:
+  home: http://www.gnu.org/software/coreutils/
+  license: GPL-3.0
+  summary: The GNU Core Utilities are the basic file, shell and text manipulation utilities of the GNU operating system. These are the core utilities which are expected to exist on every operating system.
+
+extra:
+  recipe-maintainers:
+    - shahin
